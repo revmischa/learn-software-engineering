@@ -1,1 +1,1 @@
-Everything's on the [wiki](/revmischa/learn-software-engineering/wiki)
+Everything's on the [wiki](https://github.com/revmischa/learn-software-engineering/wiki)
