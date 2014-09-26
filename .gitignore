@@ -1,0 +1,3 @@
+/.vagrant
+/tools/packer/centos.box
+/tools/packer/packer_cache

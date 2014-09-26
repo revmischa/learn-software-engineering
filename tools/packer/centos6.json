@@ -12,7 +12,7 @@
       "ssh_password": "vagrant",
       "ssh_wait_timeout": "300s",
       "headless": false,
-      "http_directory": "bootstrap/packer/http",
+      "http_directory": "http",
       "virtualbox_version_file": ".vbox_version",
       "shutdown_command": "sudo /sbin/halt",
       "vboxmanage": [
@@ -23,24 +23,24 @@
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-centos6-vagrant.cfg<enter><wait>"
       ],
-      "output_directory": "bootstrap/packer/centos6"
+      "output_directory": "centos6"
     }
   ],
 
   "provisioners": [
     {
       "type": "file",
-      "source": "bootstrap/packer/scripts/common.sh",
+      "source": "scripts/common.sh",
       "destination": "/tmp/common.sh"
     },
     {
       "type": "shell",
       "scripts": [
-        "bootstrap/packer/scripts/net.sh",
-        "bootstrap/packer/scripts/repos.sh",
-        "bootstrap/packer/scripts/vbox-additions.sh",
-        "bootstrap/packer/scripts/setup-vagrant.sh",
-        "bootstrap/packer/scripts/cleanup.sh"
+        "scripts/net.sh",
+        "scripts/repos.sh",
+        "scripts/vbox-additions.sh",
+        "scripts/setup-vagrant.sh",
+        "scripts/cleanup.sh"
       ],
        "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
     }
