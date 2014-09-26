@@ -20,6 +20,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     #dev.vm.network :public_network  # bridged (breaks stuff idk why)
 
+    dev.vm.synced_folder '.', '/home/vagrant'
+
     # provision
     $dev_provision = <<DEVPROV
 DEVPROV
