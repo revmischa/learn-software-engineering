@@ -28,7 +28,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # provision
     $dev_provision = <<DEVPROV
-yum install -y git python-virtualenv postgresql-server postgis
+yum install -y git python-virtualenv wget epel-release
+wget http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-1.noarch.rpm && sudo rpm -i pgdg-centos94-9.4-1.noarch.rpm && rm *.rpm
+yum install -y postgis2_94 postgresql94-server
 DEVPROV
     config.vm.provision "shell", inline: $dev_provision
   end
