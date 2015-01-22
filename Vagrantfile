@@ -6,15 +6,18 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|  
   config.vm.define "dev", primary: true do |dev|
     # stored in vagrantcloud
-    dev.vm.box = "revmischa/dev"
-    dev.vm.box_version = ">= 1.0"
+    #dev.vm.box = "revmischa/dev"
+    #dev.vm.box_version = ">= 1.0"
     # testing local builds
     #dev.vm.box = "tools/packer/centos.box"
 
+    dev.vm.box = "hfm4/centos7"
+
     #dev.vm.network "forwarded_port", guest: 3000, host: 3000
     dev.ssh.username = "vagrant"
-    dev.ssh.password = "vagrant"
-    
+    #dev.ssh.password = "vagrant"
+    dev.ssh.forward_agent = true
+
     # use host DNS resolver
     dev.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
@@ -25,6 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # provision
     $dev_provision = <<DEVPROV
+yum install -y git python-virtualenv postgresql-server postgis
 DEVPROV
     config.vm.provision "shell", inline: $dev_provision
   end
