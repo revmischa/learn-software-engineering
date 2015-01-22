@@ -13,7 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     #dev.vm.network "forwarded_port", guest: 3000, host: 3000
     dev.ssh.username = "vagrant"
-
+    dev.ssh.password = "vagrant"
+    
     # use host DNS resolver
     dev.vm.provider "virtualbox" do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
